@@ -10,13 +10,13 @@ def clear_screen():
 
 def ConversorMenu(): 
     while True: 
-        clear_screen()
         print('------------------')
         print('Select an option.')
         print('1. Convert')
         print('2. Exit')
         print('------------------')
         option = int(input())
+        clear_screen()
         if option == 1:
             ConvertSelector()
         elif option == 2:
@@ -47,7 +47,7 @@ def ConvertSelector():
         elif option == 4:
             break
 
-
+# TODO : Implement Weight Selector
 def WeightSelector():
     pass 
 
@@ -65,9 +65,9 @@ def TempSelector():
         print('4. Return')
         print('------------------')
 
-        opt_unit_1 = int(input('Select your former unit. (1 - 3). 4 to Exit'))
+        opt_unit_1 = int(input('Select your former unit. (1 - 3). 4 to Exit: '))
         if opt_unit_1 == 4: break
-        opt_unit_2 = int(input('Select the unit you want to convert to.(1 - 3). 4 to Exit'))
+        opt_unit_2 = int(input('Select the unit you want to convert to.(1 - 3). 4 to Exit: '))
         if opt_unit_2 == 4: break
 
 
@@ -76,6 +76,7 @@ def TempSelector():
             TempDictionary(opt_unit_1, opt_unit_2, unit_1)
         else:
             print('Options not valid')
+
 
 
 def DistanceSelector():
@@ -95,9 +96,9 @@ def DistanceSelector():
         print('7.Return')
         print('------------------')
 
-        opt_unit_1 = int(input('Select your former unit. (1 - 6). 7 to Exit'))
+        opt_unit_1 = int(input('Select your former unit. (1 - 6). 7 to Exit: '))
         if opt_unit_1 == 7: break
-        opt_unit_2 = int(input('Select the unit you want to convert to.(1 - 6). 7 to Exit'))
+        opt_unit_2 = int(input('Select the unit you want to convert to.(1 - 6). 7 to Exit: '))
         if opt_unit_2 == 7: break
         
         
@@ -112,3 +113,4 @@ def DistanceSelector():
 
 if __name__ == '__main__':
     ConversorMenu()
+            

@@ -31,6 +31,7 @@ def DistanceDictionary(opt_unit_1, opt_unit_2, unit_1):
             print(unit_1, StrDistanceOptions(opt_unit_1) , 'converted to' , StrDistanceOptions(opt_unit_2), 'is: ',InchDictionary(opt_unit_2, unit_1), StrDistanceOptions(opt_unit_2))
         case _:
             print('Error 404')
+    input('Press any key to continue...')
 
 def MeterDictionary(opt_unit_2, unit_1):
     match opt_unit_2:
