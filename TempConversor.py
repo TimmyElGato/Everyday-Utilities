@@ -1,43 +1,40 @@
-def StrTempOptions(option):
-    temp = ['Celcius (C)', 'Fahrenheit (F)', 'Kelvin']
+readable_temp = ['404', 'Celsius (C)', 'Fahrenheit (F)', 'Kelvin (K)']
 
-    match option:
-        case 1:
-            return temp[0]
-        case 2:
-            return temp[1]
-        case 3:
-            return temp[2]
+def temp_dictionary(selection_1, selection_2, value):
+    Message(value, selection_1, selection_2)
+    input('Enter any key to continue...')
 
+def Message(value, selection_1, selection_2):
+    match selection_1:
+        case 1: 
+            func = celsius_dictionary(selection_2, value)
+        case 2: 
+            func = fahrenheit_dictionary(selection_2, value)
+        case 3: 
+            func = kelvin_dictionary(selection_2, value)
 
-def TempDictionary(opt_unit_1, opt_unit_2, unit_1):
-    match opt_unit_1:
-        case 1:
-            #Add an option to round it only to 2 decimals
-            print(unit_1, StrTempOptions(opt_unit_1) , 'converted to' , StrTempOptions(opt_unit_2), 'is: ',CelciusDictionary(opt_unit_2, unit_1), StrTempOptions(opt_unit_2))
-        case 2:
-            print(unit_1, StrTempOptions(opt_unit_1) , 'converted to' , StrTempOptions(opt_unit_2), 'is: ',FahrenheitDictionary(opt_unit_2, unit_1), StrTempOptions(opt_unit_2))
-        case 3:
-            print(unit_1, StrTempOptions(opt_unit_1) , 'converted to' , StrTempOptions(opt_unit_2), 'is: ',KelvinDictionary(opt_unit_2, unit_1), StrTempOptions(opt_unit_2))
-    input('Press any key to continue...')
+    print(f'{value} degree/s {readable_temp(selection_1)} converted to {readable_temp(selection_2)} is: {func:.2f} degree/s {readable_temp(selection_2)}')
 
-def CelciusDictionary(opt_unit_2, unit_1):
-    match opt_unit_2:
+def celsius_dictionary(selection_2, value):
+    match selection_2:
         case 2: #Fahrenheit
-            return (unit_1 * 9/5) + 32
+            return (value * 9/5) + 32
         case 3: #Kelvin
-            return unit_1 + 273.15
+            return value + 273.15
 
-def FahrenheitDictionary(opt_unit_2, unit_1):
-    match opt_unit_2:
-        case 1: #Celcius
-            return (unit_1 - 32) * (5/9)
+def fahrenheit_dictionary(selection_2, value):
+    match selection_2:
+        case 1: #Celsius
+            return (value - 32) * (5/9)
         case 3: #Kelvin
-            return (unit_1 - 32) * (5/9) + 273.15
+            return (value - 32) * (5/9) + 273.15
 
-def KelvinDictionary(opt_unit_2, unit_1):
-    match opt_unit_2:
-        case 1: #Celcius
-            return unit_1 - 273
+def kelvin_dictionary(selection_2, value):
+    match selection_2:
+        case 1: #Celsius
+            return value - 273
         case 2: #Fahrenheit
-            return (unit_1 - 273.15) * (9/5) + 32
+            return (value - 273.15) * (9/5) + 32
+
+if __name__ == '__main__':
+    print(readable_temp[1])
