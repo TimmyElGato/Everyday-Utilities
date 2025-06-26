@@ -29,7 +29,7 @@ UnitConverter/
 2. Clone this repository or download the files.
 3. Run the main script:
 
-```bash
+'```bash'
 python main.py
 
 ## 🔧 Future Plans
