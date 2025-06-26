@@ -19,7 +19,7 @@ def Message(value, selection_1, selection_2):
         case 5: 
             func = ounces_dictionary(selection_2, value)
 
-    print(f'{value} degree/s {readable_weight[selection_1]} converted to {readable_weight[selection_2]} is: {func:.2f} degree/s {readable_weight[selection_2]}')
+    print(f'{value} {readable_weight[selection_1]} converted to {readable_weight[selection_2]} is: {func:.2f}  {readable_weight[selection_2]}')
 
 def grams_dictionary(selection_2, value):
     match selection_2:
