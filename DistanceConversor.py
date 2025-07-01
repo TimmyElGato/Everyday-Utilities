@@ -1,6 +1,4 @@
-def readable_distance(option):
-    dictionary = ['meter/s', 'cm/s', 'Km/s', 'mile/s', 'foot/s', 'inch/es']
-    return dictionary[option - 1]   
+readable_distance = ['404','meter/s', 'cm/s', 'Km/s', 'mile/s', 'foot/s', 'inch/es']  
         
 def distance_dictionary(selection_1, selection_2, value):
     Message(value, selection_1, selection_2)
@@ -21,85 +19,69 @@ def Message(value, selection_1, selection_2):
         case 6: 
             func = inch_dictionary(selection_2, value)
 
-    print(f'{value} {readable_distance(selection_1)} converted to {readable_distance(selection_2)} is: {func:.2f} {readable_distance(selection_2)}')
+    print(f'{value} {readable_distance[selection_1]} converted to {readable_distance[selection_2]} is: {func:.2f} {readable_distance[selection_2]}')
 
 def meter_dictionary(selection_2, value):
-    match selection_2:
-        case 2: #Centimeters
-            return(value * 100)
-        case 3: #Kilometrers
-            return(value / 1000)
-        case 4: #Miles
-            return(value * 1609.344)
-        case 5: #Foot
-            return(value * 3.2808399)
-        case 6: #Inches
-            return(value * 39.3700787)
+    conversions = {
+        2: value * 100,          # to centimeter
+        3: value / 1000,         # to kilometer
+        4: value / 1609.344,     # to mile
+        5: value * 3.28084,      # to foot
+        6: value * 39.3701       # to inch
+    }
+    return conversions.get(selection_2, "Invalid conversion")
 
 
 def centimeter_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Meters
-            return (value / 100)
-        case 3: #Kilometers
-            return (value / 100000)
-        case 4: #Miles
-            return (value / 160934.4)
-        case 5: #Foot
-            return (value / 30.48)
-        case 6: #Inches
-            return (value / 2.54)
+    conversions = {
+        1: value / 100,          # to meter
+        3: value / 100000,       # to kilometer
+        4: value / 160934.4,     # to mile
+        5: value / 30.48,        # to foot
+        6: value / 2.54          # to inch
+    }
+    return conversions.get(selection_2, "Invalid conversion")
 
-    
+
 def kilometer_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Meters
-            return(value * 1000)
-        case 2: #Centimeters
-            return(value * 1000000)
-        case 4: #Miles
-            return(value * 1.609344)
-        case 5: #Foot
-            return(value * 3280.8399)
-        case 6: #Inches
-            return(value * 39370.0787)
+    conversions = {
+        1: value * 1000,         # to meter
+        2: value * 100000,       # to centimeter
+        4: value / 1.609344,     # to mile
+        5: value * 3280.84,      # to foot
+        6: value * 39370.1       # to inch
+    }
+    return conversions.get(selection_2, "Invalid conversion")
+
         
 def mile_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Meters
-            return(value * 1609.344)
-        case 2: #Centimeters
-            return(value * 160934.4)
-        case 3: #Kilometers
-            return(value * 1.609344)
-        case 5: #Foot
-            return(value * 5280)
-        case 6: #Inches
-            return(value * 63360)
+    conversions = {
+        1: value * 1609.344,     # to meter
+        2: value * 160934.4,     # to centimeter
+        3: value * 1.609344,     # to kilometer
+        5: value * 5280,         # to foot
+        6: value * 63360         # to inch
+    }
+    return conversions.get(selection_2, "Invalid conversion")
+
         
 def foot_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Meters
-            return(value * 0.3048)
-        case 2: #Centimeters
-            return(value * 30.48)
-        case 3: #Kilometers
-            return(value * 0.0003048)
-        case 4: #Miles
-            return(value * 0.000189394)
-        case 6: #Inches
-            return(value * 12)
+    conversions = {
+        1: value / 3.28084,      # to meter
+        2: value * 30.48,        # to centimeter
+        3: value / 3280.84,      # to kilometer
+        4: value / 5280,         # to mile
+        6: value * 12            # to inch
+    }
+    return conversions.get(selection_2, "Invalid conversion")
+
 
 def inch_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Meters
-            return(value * 0.0254)
-        case 2: #Centimeters
-            return(value * 2.54)
-        case 3: #Kilometers
-            return(value * 0.0000254)
-        case 4: #Miles
-            return(value * 0.0000157828)
-        case 5: #Foot
-            return(value * 0.0833333) 
-        
+    conversions = {
+        1: value / 39.3701,      # to meter
+        2: value * 2.54,         # to centimeter
+        3: value / 39370.1,      # to kilometer
+        4: value / 63360,        # to mile
+        5: value / 12            # to foot
+    }
+    return conversions.get(selection_2, "Invalid conversion")

@@ -3,86 +3,83 @@ import os
 from DistanceConversor import distance_dictionary
 from TempConversor import  temp_dictionary
 from WeightConversor import weight_dictionary
+from TimeConversor import time_dictionary
+from DataConversor import data_dictionary
 
 #Clearing terminal function
 def clear_screen():
     os.system('cls' if os.name == 'nt' else 'clear')
 
-
+#TODO:move it to main.py
 def main_menu(): 
 
+    m_menu_options = ['Everyday Utilities!', 'Convert']
+    len_m_menu = len(m_menu_options)
+    
     while True: 
-        print('------------------')
-        print('Select an option.')
-        print('1. Convert')
-        print('2. Exit')
-        print('------------------')
-
-        #When adding new features have to change some values
-        option = int(input('Please, enter an option as an integer from 1 to 2: '))
+        display_menu(m_menu_options)
+        option = int(input(f'Please, enter an option as an integer from 1 to {len_m_menu}: '))
         clear_screen()
         if option == 1:
             convert_menu()
-        elif option == 2:
+        elif option == len_m_menu:
             break
-        else:
-            print('Option not valid, please, enter an option as an integer from 1 to 2')
 
 
 def convert_menu(): #Menu to select a category of units of convertion
 
-    
-    #When adding new category have to change values from this 'while' statement.
+    #IMPORTANT: When adding a new category have to make changes here 1/4!
+    convert_options = ['Convert Menu!', 'Distance', 'Temperature', 'Weight', 'Time', 'Data']
+    len_options = len(convert_options)
+
     while True:
-        clear_screen()
 
-        print('------------------')
-        print('   Convert Menu')
-        print('------------------')
-        print('Select a category.')
-        print('1. Distance')
-        print('2. Temperature')
-        print('3. Weight')
-        print('4. Return')
-        print('------------------')
+        display_menu(convert_options)
 
-        option = int(input('Please, select a category between 1 and 3. Enter 4 to exit: '))
-        if option == 4: break
-        elif 0 < option <= 3:convert_selector(option)
+        option = int(input(f'Please, select a category between 1 and {len_options - 1}. Enter {len_options} to exit: '))
+
+        if option == len_options : break
+        elif 0 < option <= len_options: convert_selector(option)
 
 
 def convert_selector(category: int):
 
-    match category: #Set max selection index depending on the category of unit to make sure we only enter valid options excluding 'Exit' as an option.
+    #IMPORTANT: When adding a new category have to make changes here 2/4!
+    match category: #This sets the options for the 'display_menu' function
         case 1:
-            max = 6
+            options = ['Distance Menu', 'Meter (m)', 'Centimeter (cm)', 'Kilometer (km)', 'Mile', 'Foot', 'Inch']
         case 2:
-            max = 3
+            options = ['Temperature Menu', 'Celcius (C)','Fahrenhei (F)', 'Kelvin (K)' ]
         case 3:
-            max = 5
-    
+            options = ['Weight Menu', 'Gram (g)', 'Kilogram (kg)', 'Milligram (mg)', 'Pound (lb)', 'Ounce (oz)']
+        case 4:
+            options = ['Time Menu', 'Second/s', 'Minute/s', 'Hour/s', 'Day/s', 'Week/s', 'Month/s', 'Year/s']
+        case 5:
+            options ['Data Menu', 'Bit', 'Byte', 'Kilobyte (KB)', 'Megabyte (MB)', 'Gigabyte (GB)', 'Terabyte (TB)']
+
+    max = len(options) - 1
         
     while True:
-        display_menu(category) #Displays category's menu
+        display_menu(options) #Displays category's menu
         #Ask to enter valid options to make the conversions of the menu
-        selection_1 = int(input(f'From 1 to {max}, enter your former type of unit. Enter {max + 1} to Exit: '))
+        selection_1 = int(input(f'From 1 to {max}, choose the unit you want to convert from. Enter {max + 1} to Exit: '))
         if selection_1 == max + 1: break 
-        selection_2 = int(input(f'From 1 to {max}, enter the type of unit you want to convert to. Enter {max + 1} to Exit: '))
+        selection_2 = int(input(f'From 1 to {max}, choose the unit you want to convert to. Enter {max + 1} to Exit: '))
         if selection_2 == max + 1: break
 
         #Gatekeeper type logic
-        if not 0 < selection_1 <= max and not 0 < selection_2 <= max:
-            print(f'Both inputs were not valid, please enter an integer between 1 and {max}.')
-        elif not 0 < selection_1 <= max :
+        if not 0 < selection_1 <= max : #Checks if selection 1 is between the limits of the options 
             print(f'Input 1 not valid, please enter an integer between 1 and {max}.')
-        elif not 0 < selection_2 <= max:
+        elif not 0 < selection_2 <= max: #Checks if selection 2 is between the limits of the options 
             print(f'Input 2 not valid, please enter an integer between 1 and {max}.')
-        elif not selection_1 != selection_2:
+        elif not selection_1 != selection_2: #Checks if selections are different from each other
             print('Wait, that is illegal!')
         else: #If everyting is fine we continue
+
             #Ask for the value of the unit to convert 
             value = float(input(f'Enter the value in {readable_unit(category, selection_1)} to convert it to {readable_unit(category, selection_2)}: '))
 
+            #IMPORTANT: When adding a new category have to make changes here 3/4
             match category: #Makes the convertions 
                 case 1:
                     category_Dictionary = distance_dictionary(selection_1, selection_2, value)
@@ -90,58 +87,44 @@ def convert_selector(category: int):
                     category_Dictionary = temp_dictionary(selection_1, selection_2, value)
                 case 3:
                     category_Dictionary = weight_dictionary(selection_1, selection_2, value)
+                case 4:
+                    category_Dictionary = time_dictionary(selection_1, selection_2, value)
+                case 5:
+                    category_Dictionary = data_dictionary(selection_1, selection_2, value)
         
             category_Dictionary #Calls the respective convertion method
 
-def readable_unit(category: int,index : int): 
+def readable_unit(category: int, index : int): 
     # Returns the readable name of a unit based on its category and index selection
-
-    match category:
+    
+    match category: #When adding new category have to make changes here 4/4
         case 1:
             dictionary = ['404', 'meter/s',  'cm/s', 'Km/s', 'mile/s', 'foot/s', 'inch/s']
         case 2: 
             dictionary = ['404', 'Celsius (C)', 'Fahrenheit (F)', 'Kelvin (k)']
         case 3:
-            dictionary = ['404', 'Gram/s (g)', 'Kilogram/s (kg)', 'Milligram/s (mg)', 'Pound/s (lb)', 'Ounces (Oz)']
+            dictionary = ['404', 'gram/s (g)', 'kilogram/s (kg)', 'milligram/s (mg)', 'pound/s (lb)', 'ounces (Oz)']
+        case 4:
+            dictionary = ['404', 'second/s', 'minute/s', 'hour/s', 'day/s', 'week/s', 'month/s', 'year/s']    
+        case 5: 
+            dictionary = ['404', 'Bit/s', 'Byte/s', 'Kilobyte/s (KB)', 'Megabyte/s (MB)', 'Gigabyte/s (GB)', 'Terabyte/s (TB)']
     
     return dictionary[index]
 
-def display_menu(category): #Function to display the respective menu
+def display_menu(options): #Function to display the respective menu
+    
     clear_screen()
-    match category:
-        case 1:
-            print('------------------')
-            print('  Distance Menu')
-            print('------------------')
-            print('1. Meter (m)')
-            print('2. Centimeter (cm)')
-            print('3. Kilometer')
-            print('4. Mile')
-            print('5. Foot')
-            print('6. Inch')
-            print('7.Return')
-            print('------------------')
-        case 2:
-            print('------------------')
-            print(' Temperature Menu')
-            print('------------------')
-            print('1. Celsius (C)')
-            print('2. Fahrenheit (F)')
-            print('3. Kelvin (K)')
-            print('4. Exit')
-            print('------------------')
-        case 3: 
-            print('------------------')
-            print('    Weight Menu ')
-            print('------------------')
-            print('1. Gram (g)')
-            print('2. Kilogram (kg)')
-            print('3. Milligram (mg)')
-            print('4. Pound (lb)')
-            print('5. Ounce (oz)')
-            print('6. Exit')
-            print('------------------')
-        case _: print('Error while displaying the menu')
+    line_width = 25 #width of the decoration lines for the titles of the menus
+
+    for i, option in enumerate(options):
+        if i == 0: #If its the name of the menu:
+            print('-' * line_width) #Decoration lines
+            print(option.center(line_width))
+            print('-' * line_width) 
+        else:
+            print(f'{i}. {option}')
+    print(f'{len(options)}. Exit') #At the end we print the 'Exit' option. 
+
 
 
 if __name__ == '__main__':

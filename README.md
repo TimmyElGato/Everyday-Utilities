@@ -29,10 +29,11 @@ UnitConverter/
 2. Clone this repository or download the files.
 3. Run the main script:
 
-```bash
+'```bash'
 python main.py
 
 ## 🔧 Future Plans
+
 Add currency conversion (using API)
 
 Add time converters (seconds ↔ hours, etc.)
@@ -42,5 +43,5 @@ Create a graphical user interface (GUI)
 Store usage history
 
 ## 👤 Author
+
 Created by Timmy ElGato as a way to practice and build helpful tools for everyday tasks.
-```

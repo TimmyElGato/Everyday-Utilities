@@ -16,25 +16,24 @@ def Message(value, selection_1, selection_2):
     print(f'{value} degree/s {readable_temp(selection_1)} converted to {readable_temp(selection_2)} is: {func:.2f} degree/s {readable_temp(selection_2)}')
 
 def celsius_dictionary(selection_2, value):
-    match selection_2:
-        case 2: #Fahrenheit
-            return (value * 9/5) + 32
-        case 3: #Kelvin
-            return value + 273.15
+    conversions = {
+        2: (value * 9/5) + 32,      # Celsius to Fahrenheit
+        3: value + 273.15           # Celsius to Kelvin
+    }
+    return conversions.get(selection_2, "Invalid conversion")
+
 
 def fahrenheit_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Celsius
-            return (value - 32) * (5/9)
-        case 3: #Kelvin
-            return (value - 32) * (5/9) + 273.15
+    conversions = {
+        1: (value - 32) * 5/9,      # Fahrenheit to Celsius
+        3: (value - 32) * 5/9 + 273.15  # Fahrenheit to Kelvin
+    }
+    return conversions.get(selection_2, "Invalid conversion")
+
 
 def kelvin_dictionary(selection_2, value):
-    match selection_2:
-        case 1: #Celsius
-            return value - 273
-        case 2: #Fahrenheit
-            return (value - 273.15) * (9/5) + 32
-
-if __name__ == '__main__':
-    print(readable_temp[1])
+    conversions = {
+        1: value - 273.15,               # Kelvin to Celsius
+        2: (value - 273.15) * 9/5 + 32   # Kelvin to Fahrenheit
+    }
+    return conversions.get(selection_2, "Invalid conversion")
