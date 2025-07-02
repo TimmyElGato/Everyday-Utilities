@@ -5,10 +5,13 @@ The goal is to bring together small tools and converters I frequently use in my 
 
 ## 💡 Features
 
+- Binary Converter!
 - Unit converter for:
   - 📏 Distance (meters, miles, inches, etc.)
   - 🌡️ Temperature (Celsius, Fahrenheit, Kelvin)
   - ⚖️ Weight (grams, kilograms, pounds, etc.)
+  - ⏱ Time (seconds, minutes, hours, days, etc.)
+  - 💾 Data (bits, bytes, kilobytes, megabytes, etc.)
 - Designed with modularity in mind: each category is separated in its own file
 - Easy-to-use text-based interface
 - Built in Python 3 using basic control flow and functions — no external libraries required
@@ -18,9 +21,14 @@ The goal is to bring together small tools and converters I frequently use in my 
 UnitConverter/
 │
 ├── main.py # Program entry point (menu logic)
-├── distance_converter.py # Handles all distance conversions
-├── temp_converter.py # Handles all temperature conversions
-├── weight_converter.py # Handles all weight conversions
+├── UnitConversor.py # Handles general unit conversions
+├── TempConversor.py # Handles all temperature conversions
+├── WeightConversor.py # Handles all weight conversions
+├── DistanceConversor.py# Handles all distance conversions
+├── DataConversor.py. # Handles all data conversions (e.g. bytes, terabytes)
+├── TimeConversor.py # Handles all time conversions
+├── BinaryConversor.py # Handles binary <-> text/number conversions
+├── MyFunctions.py # Contains shared utility functions (e.g. display_menu)
 └── README.md # This file
 
 ## 🚀 How to Run
@@ -36,7 +44,7 @@ python main.py
 
 Add currency conversion (using API)
 
-Add time converters (seconds ↔ hours, etc.)
+Add more features
 
 Create a graphical user interface (GUI)
 

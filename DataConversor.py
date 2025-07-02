@@ -1,11 +1,6 @@
 readable_data = ['404', 'Bit/s', 'Byte/s', 'Kilobyte/s (KB)', 'Megabyte/s (MB)', 'Gigabyte/s (GB)', 'Terabyte/s (TB)']
 
-def data_dictionary(selection_1, selection_2, value): #TODO: Pass Message function to this function
-    Message(value, selection_1, selection_2)
-    input('Enter any key to continue...')
-
-def Message(value, selection_1, selection_2): #TODO: Make it an actual dictionary
-
+def data_dictionary(selection_1, selection_2, value): 
     match selection_1:
         case 1:
             func = bit_dictionary(selection_2, value)
@@ -20,8 +15,10 @@ def Message(value, selection_1, selection_2): #TODO: Make it an actual dictionar
         case 6:
             func = terabyte_dictionary(selection_2, value)
 
-    print(f'{value} degree/s {readable_data(selection_1)} converted to {readable_data(selection_2)} is: {func:.2f} degree/s {readable_data(selection_2)}')
+    print(f'{value} degree/s {readable_data(selection_1)} converted to {readable_data(selection_2)} is: {func} degree/s {readable_data(selection_2)}')
+    input('Enter any key to continue...')
 
+    
 def bit_dictionary(selection_2, value):
     # Conversion rates from 1 bit to other units
     factors = {
@@ -84,4 +81,3 @@ def terabyte_dictionary(selection_2, value):
         5: value * 1_000,                         # to gigabyte
     }
     return conversions.get(selection_2, "Invalid conversion")
-

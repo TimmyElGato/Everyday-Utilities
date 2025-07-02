@@ -1,10 +1,6 @@
 readable_temp = ['404', 'Celsius (C)', 'Fahrenheit (F)', 'Kelvin (K)']
 
 def temp_dictionary(selection_1, selection_2, value):
-    Message(value, selection_1, selection_2)
-    input('Enter any key to continue...')
-
-def Message(value, selection_1, selection_2):
     match selection_1:
         case 1: 
             func = celsius_dictionary(selection_2, value)
@@ -14,6 +10,8 @@ def Message(value, selection_1, selection_2):
             func = kelvin_dictionary(selection_2, value)
 
     print(f'{value} degree/s {readable_temp(selection_1)} converted to {readable_temp(selection_2)} is: {func:.2f} degree/s {readable_temp(selection_2)}')
+    input('Enter any key to continue...')
+
 
 def celsius_dictionary(selection_2, value):
     conversions = {

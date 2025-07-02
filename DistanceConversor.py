@@ -1,10 +1,6 @@
 readable_distance = ['404','meter/s', 'cm/s', 'Km/s', 'mile/s', 'foot/s', 'inch/es']  
         
 def distance_dictionary(selection_1, selection_2, value):
-    Message(value, selection_1, selection_2)
-    input('Enter any key to continue...')
-
-def Message(value, selection_1, selection_2):
     match selection_1:
         case 1: 
             func = meter_dictionary(selection_2, value)
@@ -20,6 +16,8 @@ def Message(value, selection_1, selection_2):
             func = inch_dictionary(selection_2, value)
 
     print(f'{value} {readable_distance[selection_1]} converted to {readable_distance[selection_2]} is: {func:.2f} {readable_distance[selection_2]}')
+    input('Enter any key to continue...')
+
 
 def meter_dictionary(selection_2, value):
     conversions = {

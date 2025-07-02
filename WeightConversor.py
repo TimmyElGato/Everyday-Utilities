@@ -2,11 +2,6 @@ readable_weight = ['404', 'Gram/s (g)', 'Kilogram/s (kg)', 'Milligram/s (mg)', '
 
 
 def weight_dictionary(selection_1, selection_2, value):
-    Message(value, selection_1, selection_2)
-    input('Enter any key to continue...')
-
-def Message(value, selection_1, selection_2):
-    func = 0
     match selection_1:
         case 1: 
             func = grams_dictionary(selection_2, value)
@@ -21,6 +16,9 @@ def Message(value, selection_1, selection_2):
 
     print(f'{value} {readable_weight[selection_1]} converted to {readable_weight[selection_2]} is: {func:.2f}  {readable_weight[selection_2]}')
 
+    input('Enter any key to continue...')
+    
+    
 def grams_dictionary(selection_2, value):
     conversions = {
         2: value / 1000,         # Kilogram

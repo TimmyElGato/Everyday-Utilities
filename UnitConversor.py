@@ -1,29 +1,10 @@
 #Unit Conversor
-import os
+from MyFunctions import display_menu
 from DistanceConversor import distance_dictionary
 from TempConversor import  temp_dictionary
 from WeightConversor import weight_dictionary
 from TimeConversor import time_dictionary
 from DataConversor import data_dictionary
-
-#Clearing terminal function
-def clear_screen():
-    os.system('cls' if os.name == 'nt' else 'clear')
-
-#TODO:move it to main.py
-def main_menu(): 
-
-    m_menu_options = ['Everyday Utilities!', 'Convert']
-    len_m_menu = len(m_menu_options)
-    
-    while True: 
-        display_menu(m_menu_options)
-        option = int(input(f'Please, enter an option as an integer from 1 to {len_m_menu}: '))
-        clear_screen()
-        if option == 1:
-            convert_menu()
-        elif option == len_m_menu:
-            break
 
 
 def convert_menu(): #Menu to select a category of units of convertion
@@ -97,7 +78,7 @@ def convert_selector(category: int):
 def readable_unit(category: int, index : int): 
     # Returns the readable name of a unit based on its category and index selection
     
-    match category: #When adding new category have to make changes here 4/4
+    match category: #IMPORTANT: When adding new category have to make changes here 4/4
         case 1:
             dictionary = ['404', 'meter/s',  'cm/s', 'Km/s', 'mile/s', 'foot/s', 'inch/s']
         case 2: 
@@ -111,22 +92,4 @@ def readable_unit(category: int, index : int):
     
     return dictionary[index]
 
-def display_menu(options): #Function to display the respective menu
-    
-    clear_screen()
-    line_width = 25 #width of the decoration lines for the titles of the menus
-
-    for i, option in enumerate(options):
-        if i == 0: #If its the name of the menu:
-            print('-' * line_width) #Decoration lines
-            print(option.center(line_width))
-            print('-' * line_width) 
-        else:
-            print(f'{i}. {option}')
-    print(f'{len(options)}. Exit') #At the end we print the 'Exit' option. 
-
-
-
-if __name__ == '__main__':
-    main_menu()
     

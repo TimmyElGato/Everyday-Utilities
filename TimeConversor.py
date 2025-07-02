@@ -1,11 +1,6 @@
 readable_time = ['404', 'second/s', 'minute/s', 'hour/s', 'day/s', 'week/s', 'month/s', 'year/s']
 
 def time_dictionary(selection_1, selection_2, value):
-    Message(value, selection_1, selection_2)
-    input('Enter any key to continue...')
-
-def Message(value, selection_1, selection_2):
-    func = 0
     match selection_1:
         case 1: 
             func = seconds_dictionary(selection_2, value)
@@ -23,6 +18,7 @@ def Message(value, selection_1, selection_2):
             func = year_dictionary(selection_2, value)
 
     print(f'{value} {readable_time[selection_1]} converted to {readable_time[selection_2]} is: {func:.2f}  {readable_time[selection_2]}')
+    input('Enter any key to continue...')
 
 
 def seconds_dictionary(selection_2, value):
